@@ -118,7 +118,7 @@ class FileCollection implements \WebLoader\IFileCollection
 	 * Add file in remote repository (for example Google CDN).
 	 * @param string $file URL address
 	 */
-	public function addRemoteFile(string $file)
+	public function addRemoteFile($file)
 	{
 		if (in_array($file, $this->remoteFiles, true)) {
 			return;
