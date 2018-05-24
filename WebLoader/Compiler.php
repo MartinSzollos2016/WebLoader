@@ -60,7 +60,7 @@ class Compiler
 	/**
 	 * Create compiler with predefined css output naming convention
 	 */
-	public static function createCssCompiler(IFileCollection $files, string $outputDir)
+	public static function createCssCompiler(IFileCollection $files, $outputDir)
 	{
 		return new static($files, DefaultOutputNamingConvention::createCssConvention(), $outputDir);
 	}
@@ -69,7 +69,7 @@ class Compiler
 	/**
 	 * Create compiler with predefined javascript output naming convention
 	 */
-	public static function createJsCompiler(IFileCollection $files, string $outputDir)
+	public static function createJsCompiler(IFileCollection $files, $outputDir)
 	{
 		return new static($files, DefaultOutputNamingConvention::createJsConvention(), $outputDir);
 	}
