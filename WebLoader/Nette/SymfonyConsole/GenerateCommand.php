@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+
 
 namespace WebLoader\Nette\SymfonyConsole;
 
@@ -31,7 +31,7 @@ class GenerateCommand extends \Symfony\Component\Console\Command\Command
 	}
 
 
-	protected function configure(): void
+	protected function configure()
 	{
 		$this->setName('webloader:generate')
 			->setDescription('Generates files.')
@@ -39,7 +39,7 @@ class GenerateCommand extends \Symfony\Component\Console\Command\Command
 	}
 
 
-	protected function execute(InputInterface $input, OutputInterface $output): void
+	protected function execute(InputInterface $input, OutputInterface $output)
 	{
 		$force = $input->getOption('force');
 

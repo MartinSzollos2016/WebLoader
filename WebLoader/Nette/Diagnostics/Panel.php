@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+
 
 namespace WebLoader\Nette\Diagnostics;
 
@@ -41,7 +41,7 @@ class Panel implements \Tracy\IBarPanel
 	private $root;
 
 
-	public function __construct(?string $appDir = null)
+	public function __construct($appDir = null)
 	{
 		$this->root = $appDir ? str_replace('\\', DIRECTORY_SEPARATOR, realpath(dirname($appDir))) : '';
 		Debugger::getBar()->addPanel($this);
@@ -53,7 +53,7 @@ class Panel implements \Tracy\IBarPanel
 	 *
 	 * @return \WebLoader\Nette\Diagnostics\Panel
 	 */
-	public function addLoader(string $name, Compiler $compiler): self
+	public function addLoader($name, Compiler $compiler)
 	{
 		$this->compilers[$name] = $compiler;
 		return $this;
@@ -63,7 +63,7 @@ class Panel implements \Tracy\IBarPanel
 	/**
 	 * Computes the info.
 	 */
-	private function compute(): array
+	private function compute()
 	{
 		if ($this->size !== null) {
 			return $this->size;
@@ -124,7 +124,7 @@ class Panel implements \Tracy\IBarPanel
 	/**
 	 * Renders loaded files table.
 	 */
-	private function getTable(): string
+	private function getTable()
 	{
 		$latte = new Latte\Engine;
 
@@ -143,7 +143,7 @@ class Panel implements \Tracy\IBarPanel
 	/**
 	 * Returns panel content.
 	 */
-	public function getPanel(): string
+	public function getPanel()
 	{
 		return $this->compute() ? $this->getTable() : '';
 	}
@@ -152,7 +152,7 @@ class Panel implements \Tracy\IBarPanel
 	/**
 	 * Returns panel tab.
 	 */
-	public function getTab(): string
+	public function getTab()
 	{
 		$this->compute();
 

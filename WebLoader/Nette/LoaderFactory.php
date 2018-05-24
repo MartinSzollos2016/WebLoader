@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+
 
 namespace WebLoader\Nette;
 
@@ -23,7 +23,7 @@ class LoaderFactory
 	private $extensionName;
 
 
-	public function __construct(array $tempPaths, string $extensionName, IRequest $httpRequest, Container $serviceLocator)
+	public function __construct(array $tempPaths, $extensionName, IRequest $httpRequest, Container $serviceLocator)
 	{
 		$this->httpRequest = $httpRequest;
 		$this->serviceLocator = $serviceLocator;
@@ -32,7 +32,7 @@ class LoaderFactory
 	}
 
 
-	public function createCssLoader(string $name, bool $appendLastModified = false): CssLoader
+	public function createCssLoader($name, $appendLastModified = false)
 	{
 		/** @var \WebLoader\Compiler $compiler */
 		$compiler = $this->serviceLocator->getService($this->extensionName . '.css' . ucfirst($name) . 'Compiler');
@@ -40,7 +40,7 @@ class LoaderFactory
 	}
 
 
-	public function createJavaScriptLoader(string $name, bool $appendLastModified = false, ?string $nonce = null): JavaScriptLoader
+	public function createJavaScriptLoader($name, $appendLastModified = false, $nonce = null)
 	{
 		/** @var \WebLoader\Compiler $compiler */
 		$compiler = $this->serviceLocator->getService($this->extensionName . '.js' . ucfirst($name) . 'Compiler');
@@ -51,7 +51,7 @@ class LoaderFactory
 	}
 
 
-	private function formatTempPath(string $name, $absoluteUrl = false): string
+	private function formatTempPath($name, $absoluteUrl = false)
 	{
 		$lName = strtolower($name);
 		$tempPath = isset($this->tempPaths[$lName]) ? $this->tempPaths[$lName] : Extension::DEFAULT_TEMP_PATH;

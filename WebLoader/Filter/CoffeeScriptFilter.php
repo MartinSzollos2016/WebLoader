@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+
 
 namespace WebLoader\Filter;
 
@@ -22,7 +22,7 @@ class CoffeeScriptFilter
 	private $bin;
 
 
-	public function __construct(string $bin = 'coffee')
+	public function __construct($bin = 'coffee')
 	{
 		$this->bin = $bin;
 	}
@@ -31,7 +31,7 @@ class CoffeeScriptFilter
 	/**
 	 * Invoke filter
 	 */
-	public function __invoke(string $code, Compiler $loader, ?string $file = null): string
+	public function __invoke($code, Compiler $loader, $file = null)
 	{
 		if (pathinfo($file, PATHINFO_EXTENSION) === 'coffee') {
 			$code = $this->compileCoffee($code);
@@ -41,7 +41,7 @@ class CoffeeScriptFilter
 	}
 
 
-	public function compileCoffee(string $source, ?bool $bare = null): string
+	public function compileCoffee($source, $bare = null)
 	{
 		if ($bare === null) {
 			$bare = $this->bare;

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+
 
 namespace WebLoader\Filter;
 
@@ -22,7 +22,7 @@ class LessBinFilter
 	private $env;
 
 
-	public function __construct(string $bin = 'lessc', array $env = [])
+	public function __construct($bin = 'lessc', array $env = [])
 	{
 		$this->bin = $bin;
 		$this->env = $env + $_ENV;
@@ -33,7 +33,7 @@ class LessBinFilter
 	/**
 	 * Invoke filter
 	 */
-	public function __invoke(string $code, Compiler $loader, string $file): string
+	public function __invoke($code, Compiler $loader, $file)
 	{
 		if (pathinfo($file, PATHINFO_EXTENSION) === 'less') {
 			$code = Process::run("{$this->bin} -", $code, dirname($file), $this->env);

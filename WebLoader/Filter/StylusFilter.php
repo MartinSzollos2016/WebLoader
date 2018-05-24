@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+
 
 namespace WebLoader\Filter;
 
@@ -25,7 +25,7 @@ class StylusFilter
 	private $bin;
 
 
-	public function __construct(string $bin = 'stylus')
+	public function __construct($bin = 'stylus')
 	{
 		$this->bin = $bin;
 	}
@@ -34,7 +34,7 @@ class StylusFilter
 	/**
 	 * Invoke filter
 	 */
-	public function __invoke(string $code, Compiler $loader, ?string $file = null): string
+	public function __invoke($code, Compiler $loader, $file = null)
 	{
 		if (pathinfo($file, PATHINFO_EXTENSION) === 'styl') {
 			$path =

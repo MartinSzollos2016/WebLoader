@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+
 
 namespace WebLoader\Filter;
 
@@ -18,13 +18,13 @@ class LessFilter
 	private $lc;
 
 
-	public function __construct(?lessc $lc = null)
+	public function __construct($lc = null)
 	{
 		$this->lc = $lc;
 	}
 
 
-	private function getLessC(): lessc
+	private function getLessC()
 	{
 		// lazy loading
 		if (empty($this->lc)) {
@@ -38,7 +38,7 @@ class LessFilter
 	/**
 	 * Invoke filter
 	 */
-	public function __invoke(string $code, Compiler $loader, string $file): string
+	public function __invoke($code, Compiler $loader, $file)
 	{
 		if (pathinfo($file, PATHINFO_EXTENSION) === 'less') {
 			$lessc = $this->getLessC();

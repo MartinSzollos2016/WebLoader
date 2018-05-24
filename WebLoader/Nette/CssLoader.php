@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+
 
 namespace WebLoader\Nette;
 
@@ -31,7 +31,7 @@ class CssLoader extends \WebLoader\Nette\WebLoader
 	/**
 	 * Get media
 	 */
-	public function getMedia(): string
+	public function getMedia()
 	{
 		return $this->media;
 	}
@@ -40,7 +40,7 @@ class CssLoader extends \WebLoader\Nette\WebLoader
 	/**
 	 * Get type
 	 */
-	public function getType(): string
+	public function getType()
 	{
 		return $this->type;
 	}
@@ -49,7 +49,7 @@ class CssLoader extends \WebLoader\Nette\WebLoader
 	/**
 	 * Get title
 	 */
-	public function getTitle(): string
+	public function getTitle()
 	{
 		return $this->title;
 	}
@@ -58,7 +58,7 @@ class CssLoader extends \WebLoader\Nette\WebLoader
 	/**
 	 * Is alternate ?
 	 */
-	public function isAlternate(): bool
+	public function isAlternate()
 	{
 		return $this->alternate;
 	}
@@ -69,7 +69,7 @@ class CssLoader extends \WebLoader\Nette\WebLoader
 	 *
 	 * @return \WebLoader\Nette\CssLoader
 	 */
-	public function setMedia(string $media): self
+	public function setMedia($media)
 	{
 		$this->media = $media;
 		return $this;
@@ -81,7 +81,7 @@ class CssLoader extends \WebLoader\Nette\WebLoader
 	 *
 	 * @return \WebLoader\Nette\CssLoader
 	 */
-	public function setType(string $type): self
+	public function setType($type)
 	{
 		$this->type = $type;
 		return $this;
@@ -93,7 +93,7 @@ class CssLoader extends \WebLoader\Nette\WebLoader
 	 *
 	 * @return \WebLoader\Nette\CssLoader
 	 */
-	public function setTitle(string $title): self
+	public function setTitle($title)
 	{
 		$this->title = $title;
 		return $this;
@@ -105,7 +105,7 @@ class CssLoader extends \WebLoader\Nette\WebLoader
 	 *
 	 * @return \WebLoader\Nette\CssLoader
 	 */
-	public function setAlternate(bool $alternate): self
+	public function setAlternate($alternate)
 	{
 		$this->alternate = $alternate;
 		return $this;
@@ -115,7 +115,7 @@ class CssLoader extends \WebLoader\Nette\WebLoader
 	/**
 	 * Get link element
 	 */
-	public function getElement(string $source): Html
+	public function getElement($source)
 	{
 		if ($this->alternate) {
 			$alternate = ' alternate';

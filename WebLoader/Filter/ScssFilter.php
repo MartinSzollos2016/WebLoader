@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+
 
 namespace WebLoader\Filter;
 
@@ -21,7 +21,7 @@ class ScssFilter
 	private $sc;
 
 
-	public function __construct(?Compiler $sc = null)
+	public function __construct(Compiler $sc = null)
 	{
 		$this->sc = $sc;
 	}
@@ -44,7 +44,7 @@ class ScssFilter
 	/**
 	 * Invoke filter
 	 */
-	public function __invoke(string $code, \WebLoader\Compiler $loader, string $file): string
+	public function __invoke($code, \WebLoader\Compiler $loader, $file)
 	{
 		if (pathinfo($file, PATHINFO_EXTENSION) === 'scss') {
 			$this->getScssC()->setImportPaths(['', pathinfo($file, PATHINFO_DIRNAME) . '/']);

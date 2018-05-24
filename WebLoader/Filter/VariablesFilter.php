@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+
 
 namespace WebLoader\Filter;
 
@@ -39,7 +39,7 @@ class VariablesFilter
 	 *
 	 * @return \WebLoader\Filter\VariablesFilter
 	 */
-	public function setDelimiter(string $start, string $end): self
+	public function setDelimiter($start, $end)
 	{
 		$this->startVariable = (string) $start;
 		$this->endVariable = (string) $end;
@@ -50,7 +50,7 @@ class VariablesFilter
 	/**
 	 * Invoke filter
 	 */
-	public function __invoke(string $code): string
+	public function __invoke($code)
 	{
 		$start = $this->startVariable;
 		$end = $this->endVariable;
@@ -68,7 +68,7 @@ class VariablesFilter
 	/**
 	 * Magic set variable, do not call directly
 	 */
-	public function __set(string $name, string $value): void
+	public function __set($name, $value)
 	{
 		$this->variables[$name] = (string) $value;
 	}
@@ -79,7 +79,7 @@ class VariablesFilter
 	 *
 	 * @throws \WebLoader\InvalidArgumentException
 	 */
-	public function &__get(string $name): string
+	public function &__get($name)
 	{
 		if (array_key_exists($name, $this->variables)) {
 			return $this->variables[$name];

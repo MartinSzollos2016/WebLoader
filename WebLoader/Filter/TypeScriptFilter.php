@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+
 
 namespace WebLoader\Filter;
 
@@ -22,7 +22,7 @@ class TypeScriptFilter
 	private $env;
 
 
-	public function __construct(string $bin = 'tsc', array $env = [])
+	public function __construct($bin = 'tsc', array $env = [])
 	{
 		$this->bin = $bin;
 		$this->env = $env + $_ENV;
@@ -33,7 +33,7 @@ class TypeScriptFilter
 	/**
 	 * Invoke filter
 	 */
-	public function __invoke(string $code, Compiler $compiler, ?string $file = null): string
+	public function __invoke($code, Compiler $compiler, $file = null)
 	{
 		if (pathinfo($file, PATHINFO_EXTENSION) === 'ts') {
 			$out = substr_replace($file, 'js', -2);

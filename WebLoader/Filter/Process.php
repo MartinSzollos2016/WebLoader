@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+
 
 namespace WebLoader\Filter;
 
@@ -19,7 +19,7 @@ class Process
 	 * @param array|null $env
 	 * @throws \RuntimeExeption
 	 */
-	public static function run(string $cmd, ?string $stdin = null, ?string $cwd = null, ?array $env = null): string
+	public static function run($cmd, $stdin = null, $cwd = null, array $env = null)
 	{
 		$descriptorspec = [
 			0 => ['pipe', 'r'], // stdin

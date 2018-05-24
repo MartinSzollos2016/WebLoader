@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+
 
 namespace WebLoader;
 
@@ -60,7 +60,7 @@ class Compiler
 	/**
 	 * Create compiler with predefined css output naming convention
 	 */
-	public static function createCssCompiler(IFileCollection $files, string $outputDir): self
+	public static function createCssCompiler(IFileCollection $files, string $outputDir)
 	{
 		return new static($files, DefaultOutputNamingConvention::createCssConvention(), $outputDir);
 	}
@@ -69,25 +69,25 @@ class Compiler
 	/**
 	 * Create compiler with predefined javascript output naming convention
 	 */
-	public static function createJsCompiler(IFileCollection $files, string $outputDir): self
+	public static function createJsCompiler(IFileCollection $files, string $outputDir)
 	{
 		return new static($files, DefaultOutputNamingConvention::createJsConvention(), $outputDir);
 	}
 
 
-	public function enableDebugging(bool $allow = true): void
+	public function enableDebugging($allow = true)
 	{
 		$this->debugging = (bool) $allow;
 	}
 
 
-	public function getNonce(): ?string
+	public function getNonce()
 	{
 		return $this->nonce;
 	}
 
 
-	public function setNonce(?string $nonce): void
+	public function setNonce($nonce)
 	{
 		$this->nonce = $nonce;
 	}
@@ -96,7 +96,7 @@ class Compiler
 	/**
 	 * Get temp path
 	 */
-	public function getOutputDir(): string
+	public function getOutputDir()
 	{
 		return $this->outputDir;
 	}
@@ -105,7 +105,7 @@ class Compiler
 	/**
 	 * Set temp path
 	 */
-	public function setOutputDir(string $tempPath): void
+	public function setOutputDir($tempPath)
 	{
 		$tempPath = Path::normalize($tempPath);
 
@@ -124,7 +124,7 @@ class Compiler
 	/**
 	 * Get join files
 	 */
-	public function getJoinFiles(): bool
+	public function getJoinFiles()
 	{
 		return $this->joinFiles;
 	}
@@ -133,45 +133,45 @@ class Compiler
 	/**
 	 * Set join files
 	 */
-	public function setJoinFiles(bool $joinFiles): void
+	public function setJoinFiles($joinFiles)
 	{
 		$this->joinFiles = (bool) $joinFiles;
 	}
 
 
-	public function isAsync(): bool
+	public function isAsync()
 	{
 		return $this->async;
 	}
 
 
-	public function setAsync(bool $async): self
+	public function setAsync($async)
 	{
 		$this->async = (bool) $async;
 		return $this;
 	}
 
 
-	public function isDefer(): bool
+	public function isDefer()
 	{
 		return $this->defer;
 	}
 
 
-	public function setDefer(bool $defer): self
+	public function setDefer($defer)
 	{
 		$this->defer = $defer;
 		return $this;
 	}
 
 
-	public function isAbsoluteUrl(): bool
+	public function isAbsoluteUrl()
 	{
 		return $this->absoluteUrl;
 	}
 
 
-	public function setAbsoluteUrl(bool $absoluteUrl): self
+	public function setAbsoluteUrl($absoluteUrl)
 	{
 		$this->absoluteUrl = $absoluteUrl;
 		return $this;
@@ -181,7 +181,7 @@ class Compiler
 	/**
 	 * Set check last modified
 	 */
-	public function setCheckLastModified(bool $checkLastModified): void
+	public function setCheckLastModified($checkLastModified)
 	{
 		$this->checkLastModified = (bool) $checkLastModified;
 	}
@@ -190,7 +190,7 @@ class Compiler
 	/**
 	 * Get last modified timestamp of newest file
 	 */
-	public function getLastModified(?array $files = null): int
+	public function getLastModified(array $files = null)
 	{
 		if ($files === null) {
 			$files = $this->collection->getFiles();
@@ -209,7 +209,7 @@ class Compiler
 	/**
 	 * Get joined content of all files
 	 */
-	public function getContent(?array $files = null): string
+	public function getContent(array $files = null)
 	{
 		if ($files === null) {
 			$files = $this->collection->getFiles();
@@ -233,7 +233,7 @@ class Compiler
 	/**
 	 * Load content and save file
 	 */
-	public function generate(): array
+	public function generate()
 	{
 		$files = $this->collection->getFiles();
 
@@ -285,7 +285,7 @@ class Compiler
 	 *
 	 * @param string $file path
 	 */
-	protected function loadFile(string $file): string
+	protected function loadFile($file)
 	{
 		$content = file_get_contents($file);
 
@@ -297,31 +297,31 @@ class Compiler
 	}
 
 
-	public function getFileCollection(): IFileCollection
+	public function getFileCollection()
 	{
 		return $this->collection;
 	}
 
 
-	public function getOutputNamingConvention(): IOutputNamingConvention
+	public function getOutputNamingConvention()
 	{
 		return $this->namingConvention;
 	}
 
 
-	public function setFileCollection(IFileCollection $collection): void
+	public function setFileCollection(IFileCollection $collection)
 	{
 		$this->collection = $collection;
 	}
 
 
-	public function setOutputNamingConvention(IOutputNamingConvention $namingConvention): void
+	public function setOutputNamingConvention(IOutputNamingConvention $namingConvention)
 	{
 		$this->namingConvention = $namingConvention;
 	}
 
 
-	public function addFilter($filter): void
+	public function addFilter($filter)
 	{
 		if (!is_callable($filter)) {
 			throw new \WebLoader\InvalidArgumentException('Filter is not callable.');
@@ -331,13 +331,13 @@ class Compiler
 	}
 
 
-	public function getFilters(): array
+	public function getFilters()
 	{
 		return $this->filters;
 	}
 
 
-	public function addFileFilter(callable $filter): void
+	public function addFileFilter(callable $filter)
 	{
 		if (!is_callable($filter)) {
 			throw new \WebLoader\InvalidArgumentException('Filter is not callable.');
@@ -347,7 +347,7 @@ class Compiler
 	}
 
 
-	public function getFileFilters(): array
+	public function getFileFilters()
 	{
 		return $this->fileFilters;
 	}

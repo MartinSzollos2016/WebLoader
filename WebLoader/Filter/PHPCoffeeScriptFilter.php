@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+
 
 namespace WebLoader\Filter;
 
@@ -17,7 +17,7 @@ class PHPCoffeeScriptFilter
 	/**
 	 * Invoke filter
 	 */
-	public function __invoke(string $code, \WebLoader\Compiler $loader, ?string $file = null): string
+	public function __invoke($code, \WebLoader\Compiler $loader, $file = null)
 	{
 		if (pathinfo($file, PATHINFO_EXTENSION) === 'coffee') {
 			$code = $this->compileCoffee($code, $file);
@@ -32,7 +32,7 @@ class PHPCoffeeScriptFilter
 	 * @param $file bool|NULL
 	 * @throws \WebLoader\WebLoaderException
 	 */
-	public function compileCoffee($source, $file): string
+	public function compileCoffee($source, $file)
 	{
 		try {
 			return Compiler::compile($source, ['filename' => $file]);

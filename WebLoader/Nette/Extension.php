@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+
 
 namespace WebLoader\Nette;
 
@@ -16,8 +16,8 @@ use Nette\Utils\Finder;
  */
 class Extension extends \Nette\DI\CompilerExtension
 {
-	public const DEFAULT_TEMP_PATH = 'webtemp';
-	public const EXTENSION_NAME = 'webloader';
+	const DEFAULT_TEMP_PATH = 'webtemp';
+	const EXTENSION_NAME = 'webloader';
 
 
 	public function getDefaultConfig()
@@ -66,7 +66,7 @@ class Extension extends \Nette\DI\CompilerExtension
 	}
 
 
-	public function loadConfiguration(): void
+	public function loadConfiguration()
 	{
 		$builder = $this->getContainerBuilder();
 		$config = $this->getConfig($this->getDefaultConfig());
@@ -110,7 +110,7 @@ class Extension extends \Nette\DI\CompilerExtension
 	}
 
 
-	private function addWebLoader(ContainerBuilder $builder, $name, $config): void
+	private function addWebLoader(ContainerBuilder $builder, $name, $config)
 	{
 		$filesServiceName = $this->prefix($name . 'Files');
 
@@ -168,7 +168,7 @@ class Extension extends \Nette\DI\CompilerExtension
 	}
 
 
-	public function afterCompile(Nette\PhpGenerator\ClassType $class): void
+	public function afterCompile(Nette\PhpGenerator\ClassType $class)
 	{
 		$meta = $class->getProperty('meta');
 		if (array_key_exists('webloader\\nette\\loaderfactory', $meta->value['types'])) {
@@ -183,16 +183,16 @@ class Extension extends \Nette\DI\CompilerExtension
 	}
 
 
-	public function install(Configurator $configurator): void
+	public function install(Configurator $configurator)
 	{
 		$self = $this;
-		$configurator->onCompile[] = function ($configurator, Compiler $compiler) use ($self): void {
+		$configurator->onCompile[] = function ($configurator, Compiler $compiler) use ($self) {
 			$compiler->addExtension($self::EXTENSION_NAME, $self);
 		};
 	}
 
 
-	private function findFiles(array $filesConfig, string $sourceDir): array
+	private function findFiles(array $filesConfig, $sourceDir)
 	{
 		$normalizedFiles = [];
 
@@ -233,7 +233,7 @@ class Extension extends \Nette\DI\CompilerExtension
 	}
 
 
-	protected function checkFileExists(string $file, string $sourceDir): void
+	protected function checkFileExists($file, $sourceDir)
 	{
 		if (!$this->fileExists($file)) {
 			$tmp = rtrim($sourceDir, '/\\') . DIRECTORY_SEPARATOR . $file;
@@ -247,7 +247,7 @@ class Extension extends \Nette\DI\CompilerExtension
 	/**
 	 * Some servers seem to have problems under cron user with open_basedir restriction when using relative paths
 	 */
-	protected function fileExists(string $file): bool
+	protected function fileExists($file)
 	{
 		$file = realpath($file);
 

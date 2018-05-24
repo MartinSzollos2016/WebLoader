@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+
 
 namespace WebLoader;
 
@@ -28,7 +28,7 @@ class FileCollection implements \WebLoader\IFileCollection
 	/**
 	 * @param string|null $root files root for relative paths
 	 */
-	public function __construct(?string $root = null)
+	public function __construct($root = null)
 	{
 		$this->root = $root;
 	}
@@ -37,7 +37,7 @@ class FileCollection implements \WebLoader\IFileCollection
 	/**
 	 * Get file list
 	 */
-	public function getFiles(): array
+	public function getFiles()
 	{
 		return array_values($this->files);
 	}
@@ -49,7 +49,7 @@ class FileCollection implements \WebLoader\IFileCollection
 	 * @param $path string
 	 * @throws \WebLoader\FileNotFoundException
 	 */
-	public function cannonicalizePath($path): string
+	public function cannonicalizePath($path)
 	{
 		$rel = Path::normalize($this->root . '/' . $path);
 		if (file_exists($rel)) {
@@ -69,7 +69,7 @@ class FileCollection implements \WebLoader\IFileCollection
 	 * Add file
 	 * @param $file string filename
 	 */
-	public function addFile($file): void
+	public function addFile($file)
 	{
 		$file = $this->cannonicalizePath((string) $file);
 
@@ -85,7 +85,7 @@ class FileCollection implements \WebLoader\IFileCollection
 	 * Add files
 	 * @param array|\Traversable $files array list of files
 	 */
-	public function addFiles($files): void
+	public function addFiles($files)
 	{
 		foreach ($files as $file) {
 			$this->addFile($file);
@@ -97,7 +97,7 @@ class FileCollection implements \WebLoader\IFileCollection
 	 * Remove file
 	 * @param $file string filename
 	 */
-	public function removeFile($file): void
+	public function removeFile($file)
 	{
 		$this->removeFiles([$file]);
 	}
@@ -107,7 +107,7 @@ class FileCollection implements \WebLoader\IFileCollection
 	 * Remove files
 	 * @param array $files list of files
 	 */
-	public function removeFiles(array $files): void
+	public function removeFiles(array $files)
 	{
 		$files = array_map([$this, 'cannonicalizePath'], $files);
 		$this->files = array_diff($this->files, $files);
@@ -118,7 +118,7 @@ class FileCollection implements \WebLoader\IFileCollection
 	 * Add file in remote repository (for example Google CDN).
 	 * @param string $file URL address
 	 */
-	public function addRemoteFile(string $file): void
+	public function addRemoteFile(string $file)
 	{
 		if (in_array($file, $this->remoteFiles, true)) {
 			return;
@@ -132,7 +132,7 @@ class FileCollection implements \WebLoader\IFileCollection
 	 * Add multiple remote files
 	 * @param array|\Traversable $files
 	 */
-	public function addRemoteFiles($files): void
+	public function addRemoteFiles($files)
 	{
 		foreach ($files as $file) {
 			$this->addRemoteFile($file);
@@ -143,7 +143,7 @@ class FileCollection implements \WebLoader\IFileCollection
 	/**
 	 * Remove all files
 	 */
-	public function clear(): void
+	public function clear()
 	{
 		$this->files = [];
 		$this->watchFiles = [];
@@ -151,13 +151,13 @@ class FileCollection implements \WebLoader\IFileCollection
 	}
 
 
-	public function getRemoteFiles(): array
+	public function getRemoteFiles()
 	{
 		return $this->remoteFiles;
 	}
 
 
-	public function getRoot(): string
+	public function getRoot()
 	{
 		return $this->root;
 	}
@@ -167,7 +167,7 @@ class FileCollection implements \WebLoader\IFileCollection
 	 * Add watch file
 	 * @param $file string filename
 	 */
-	public function addWatchFile($file): void
+	public function addWatchFile($file)
 	{
 		$file = $this->cannonicalizePath((string) $file);
 
@@ -183,7 +183,7 @@ class FileCollection implements \WebLoader\IFileCollection
 	 * Add watch files
 	 * @param array|\Traversable $files array list of files
 	 */
-	public function addWatchFiles($files): void
+	public function addWatchFiles($files)
 	{
 		foreach ($files as $file) {
 			$this->addWatchFile($file);
@@ -194,7 +194,7 @@ class FileCollection implements \WebLoader\IFileCollection
 	/**
 	 * Get watch file list
 	 */
-	public function getWatchFiles(): array
+	public function getWatchFiles()
 	{
 		return array_values($this->watchFiles);
 	}

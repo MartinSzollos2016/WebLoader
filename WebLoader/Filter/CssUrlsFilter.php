@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+
 
 namespace WebLoader\Filter;
 
@@ -31,7 +31,7 @@ class CssUrlsFilter
 	 * @param string $docRoot web document root
 	 * @throws \WebLoader\InvalidArgumentException
 	 */
-	public function __construct(string $docRoot, string $basePath = '/')
+	public function __construct($docRoot, $basePath = '/')
 	{
 		$this->docRoot = Path::normalize($docRoot);
 
@@ -43,7 +43,7 @@ class CssUrlsFilter
 	}
 
 
-	public function setBasePath(string $basePath): void
+	public function setBasePath($basePath)
 	{
 		$this->basePath = $basePath;
 	}
@@ -56,7 +56,7 @@ class CssUrlsFilter
 	 * @param string $quote single or double quote
 	 * @param string $cssFile absolute css file path
 	 */
-	public function absolutizeUrl(string $url, string $quote, string $cssFile): string
+	public function absolutizeUrl($url, $quote, $cssFile)
 	{
 		// is already absolute
 		if (preg_match('/^([a-z]+:\/)?\//', $url)) {
@@ -84,7 +84,7 @@ class CssUrlsFilter
 	 *
 	 * @return string path
 	 */
-	public function cannonicalizePath(string $path): string
+	public function cannonicalizePath($path)
 	{
 		$path = strtr($path, DIRECTORY_SEPARATOR, '/');
 
@@ -109,7 +109,7 @@ class CssUrlsFilter
 	/**
 	 * Invoke filter
 	 */
-	public function __invoke(string $code, Compiler $loader, ?string $file = null): string
+	public function __invoke($code, $loader, $file = null)
 	{
 		// thanks to kravco
 		$regexp = '~

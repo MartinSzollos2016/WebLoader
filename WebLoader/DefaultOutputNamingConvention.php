@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+
 
 namespace WebLoader;
 
@@ -19,7 +19,7 @@ class DefaultOutputNamingConvention implements \WebLoader\IOutputNamingConventio
 	private $suffix = '';
 
 
-	public static function createCssConvention(): self
+	public static function createCssConvention()
 	{
 		$convention = new static();
 		$convention->setSuffix('.css');
@@ -28,7 +28,7 @@ class DefaultOutputNamingConvention implements \WebLoader\IOutputNamingConventio
 	}
 
 
-	public static function createJsConvention(): self
+	public static function createJsConvention()
 	{
 		$convention = new static();
 		$convention->setSuffix('.js');
@@ -40,7 +40,7 @@ class DefaultOutputNamingConvention implements \WebLoader\IOutputNamingConventio
 	/**
 	 * Get generated file name prefix
 	 */
-	public function getPrefix(): string
+	public function getPrefix()
 	{
 		return $this->prefix;
 	}
@@ -50,7 +50,7 @@ class DefaultOutputNamingConvention implements \WebLoader\IOutputNamingConventio
 	 * Set generated file name prefix
 	 * @param string $prefix generated file name prefix
 	 */
-	public function setPrefix(string $prefix): void
+	public function setPrefix($prefix)
 	{
 		$this->prefix = (string) $prefix;
 	}
@@ -59,7 +59,7 @@ class DefaultOutputNamingConvention implements \WebLoader\IOutputNamingConventio
 	/**
 	 * Get generated file name suffix
 	 */
-	public function getSuffix(): string
+	public function getSuffix()
 	{
 		return $this->suffix;
 	}
@@ -69,7 +69,7 @@ class DefaultOutputNamingConvention implements \WebLoader\IOutputNamingConventio
 	 * Set generated file name suffix
 	 * @param string $suffix generated file name suffix
 	 */
-	public function setSuffix(string $suffix): void
+	public function setSuffix($suffix)
 	{
 		$this->suffix = (string) $suffix;
 	}
@@ -78,7 +78,7 @@ class DefaultOutputNamingConvention implements \WebLoader\IOutputNamingConventio
 	/**
 	 * Filename of generated file
 	 */
-	public function getFilename(array $files, Compiler $compiler): string
+	public function getFilename(array $files, Compiler $compiler)
 	{
 		return $this->prefix . $this->createHash($files, $compiler) . $this->suffix;
 	}

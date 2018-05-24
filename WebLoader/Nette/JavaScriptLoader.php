@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+
 
 namespace WebLoader\Nette;
 
@@ -18,7 +18,7 @@ class JavaScriptLoader extends \WebLoader\Nette\WebLoader
 	/**
 	 * Get script element
 	 */
-	public function getElement(string $source): Html
+	public function getElement($source)
 	{
 		$el = Html::el('script');
 		$this->getCompiler()->isAsync() ? $el = $el->addAttributes(['async' => true]) : null;

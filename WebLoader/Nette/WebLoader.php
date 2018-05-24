@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+
 
 namespace WebLoader\Nette;
 
@@ -36,25 +36,25 @@ abstract class WebLoader extends \Nette\Application\UI\Control
 	}
 
 
-	public function getCompiler(): Compiler
+	public function getCompiler()
 	{
 		return $this->compiler;
 	}
 
 
-	public function setCompiler(Compiler $compiler): void
+	public function setCompiler(Compiler $compiler)
 	{
 		$this->compiler = $compiler;
 	}
 
 
-	public function getTempPath(): string
+	public function getTempPath()
 	{
 		return $this->tempPath;
 	}
 
 
-	public function setTempPath(string $tempPath): void
+	public function setTempPath($tempPath)
 	{
 		$this->tempPath = $tempPath;
 	}
@@ -63,13 +63,13 @@ abstract class WebLoader extends \Nette\Application\UI\Control
 	/**
 	 * Get html element including generated content
 	 */
-	abstract public function getElement(string $source): Html;
+	abstract public function getElement($source);
 
 
 	/**
 	 * Generate compiled file(s) and render link(s)
 	 */
-	public function render(): void
+	public function render()
 	{
 		$hasArgs = func_num_args() > 0;
 
