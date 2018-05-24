@@ -18,7 +18,9 @@ class DefaultOutputNamingConvention implements \WebLoader\IOutputNamingConventio
 	/** @var string */
 	private $suffix = '';
 
-
+	/**
+	 * @return DefaultOutputNamingConvention
+	 */
 	public static function createCssConvention()
 	{
 		$convention = new static();
@@ -27,7 +29,9 @@ class DefaultOutputNamingConvention implements \WebLoader\IOutputNamingConventio
 		return $convention;
 	}
 
-
+	/**
+	 * @return DefaultOutputNamingConvention
+	 */
 	public static function createJsConvention()
 	{
 		$convention = new static();
